@@ -64,7 +64,9 @@ const gameContent = screenSecondGame.querySelector(`.game__content`);
 
 gameContent.addEventListener(`click`, () => {
   const gameAnswer = gameContent.querySelectorAll(`input[type=radio]:checked`);
-  if (gameAnswer.length > 0) showScreen(screenThirdGame);
+  if (gameAnswer.length > 0) {
+    showScreen(screenThirdGame);
+  }
 });
 
 showFirstGame.addEventListener(`click`, () => {
