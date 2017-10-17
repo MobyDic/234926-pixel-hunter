@@ -1,22 +1,26 @@
 import createElement from '../createElement';
-import showScreen from '../showScreen';
 import headerTemplate from './header';
 import state from '../data/initialState';
+import question from '../data/question.js';
+import nextScreen from '../util/nextScreen';
+import showScreen from '../showScreen';
 
 
 export default (data) => {
+  const questions = [question(), question(), question()];
+
   const gameThirdHtml = `${headerTemplate}
     <div class="game">
       <p class="game__task">${data.firstgame.description}</p>
       <form class="game__content  game__content--triple">
         <div class="game__option">
-          <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
+          <img src="${questions[0].question}" alt="Option 1" width="304" height="455">
         </div>
         <div class="game__option  game__option--selected">
-          <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
+          <img src="${questions[1].question}" alt="Option 1" width="304" height="455">
         </div>
         <div class="game__option">
-          <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
+          <img src="${questions[2].question}" alt="Option 1" width="304" height="455">
         </div>
       </form>
       <div class="stats">
@@ -39,14 +43,15 @@ export default (data) => {
   const showSecondGame = screenThirdGame.querySelector(`.back`);
   const gameContent = screenThirdGame.querySelector(`.game__content`);
 
-  gameContent.addEventListener(`click`, () => {
-    if (state.answers.length < state.game) {
-        state.answers.push({'answer': true, time: 20});
-        console.log(state.answers);
-        showScreen(data.thirdgame.direction.next(data));
-      } else {
-        showScreen(data.thirdgame.direction.end(data));
-      }
+  gameContent.addEventListener(`click`, (evt) => {
+
+    const questionClick = questions.find(function (arr) {
+      return (arr.question === evt.srcElement.childNodes[1].currentSrc);
+    });
+
+    state.answers.push({'answer': (questionClick.type === `photo`), 'time': 7});
+
+    nextScreen(data, data.thirdgame);
   });
 
   showSecondGame.addEventListener(`click`, () => {
@@ -54,4 +59,4 @@ export default (data) => {
   });
 
   return screenThirdGame;
-}
+};
