@@ -1,16 +1,20 @@
 import createElement from '../createElement';
-import showScreen from '../showScreen';
 import headerTemplate from './header';
 import state from '../data/initialState';
+import question from '../data/question.js';
+import nextScreen from '../util/nextScreen';
+import showScreen from '../showScreen';
 
 
 export default (data) => {
+  const questions = question();
+
   const gameSecondHtml = `${headerTemplate}
     <div class="game">
       <p class="game__task">${data.secondgame.description}</p>
       <form class="game__content  game__content--wide">
         <div class="game__option">
-          <img src="http://placehold.it/705x455" alt="Option 1" width="705" height="455">
+          <img src="${questions.question}" alt="Option 1" width="705" height="455">
           <label class="game__answer  game__answer--photo">
             <input name="question1" type="radio" value="photo">
             <span>Фото</span>
@@ -42,15 +46,17 @@ export default (data) => {
   const gameContent = screenSecondGame.querySelector(`.game__content`);
 
   gameContent.addEventListener(`click`, () => {
-    const gameAnswer = gameContent.querySelectorAll(`input[type=radio]:checked`);
-    if (gameAnswer.length > 0) {
-      if (state.answers.length < state.game) {
-        state.answers.push({'answer': true, time: 20});
-        console.log(state.answers);
-        showScreen(data.secondgame.direction.next(data));
-      } else {
-        showScreen(data.secondgame.direction.end(data));
-      }
+    const radioChecked = gameContent.querySelectorAll(`input[type=radio]:checked`);
+
+    if (radioChecked.length > 0) {
+      radioChecked.forEach(function (arr) {
+
+        state.answers.push({'answer': (arr.value === questions.type), 'time': 7});
+
+      });
+
+      nextScreen(data, data.secondgame);
+
     }
   });
 
@@ -60,4 +66,4 @@ export default (data) => {
 
 
   return screenSecondGame;
-}
+};

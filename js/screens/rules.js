@@ -37,4 +37,4 @@ export default (data) => {
   });
 
   return screenRules;
-}
+};

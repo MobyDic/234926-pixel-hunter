@@ -1,16 +1,20 @@
 import createElement from '../createElement';
-import showScreen from '../showScreen';
 import headerTemplate from './header';
 import state from '../data/initialState';
-import question from '../data/question.js';
+import question from '../data/question';
+import nextScreen from '../util/nextScreen';
+import showScreen from '../showScreen';
+
 
 export default (data) => {
+  const questions = [question(), question()];
+
   const gameFirstHtml = `${headerTemplate}
     <div class="game">
       <p class="game__task">${data.firstgame.description}</p>
       <form class="game__content">
         <div class="game__option">
-          <img src="http://placehold.it/468x458" alt="Option 1" width="468" height="458">
+          <img src="${questions[0].question}" alt="Option 1" width="468" height="458">
           <label class="game__answer game__answer--photo">
             <input name="question1" type="radio" value="photo">
             <span>Фото</span>
@@ -21,7 +25,7 @@ export default (data) => {
           </label>
         </div>
         <div class="game__option">
-          <img src="http://placehold.it/468x458" alt="Option 2" width="468" height="458">
+          <img src="${questions[1].question}" alt="Option 2" width="468" height="458">
           <label class="game__answer  game__answer--photo">
             <input name="question2" type="radio" value="photo">
             <span>Фото</span>
@@ -55,13 +59,14 @@ export default (data) => {
   gameContent.addEventListener(`click`, () => {
     const radioChecked = screenFirstGame.querySelectorAll(`input[type=radio]:checked`);
     if (radioChecked.length > 1) {
-      if (state.answers.length < state.game) {
-        state.answers.push({'answer': true, time: 20});
-        console.log(state.answers);
-        showScreen(data.firstgame.direction.next(data));
-      } else {
-        showScreen(data.firstgame.direction.end(data));
-      }
+      radioChecked.forEach(function (arr, i) {
+
+        state.answers.push({'answer': (arr.value === questions[i].type), 'time': 7});
+
+      });
+
+      nextScreen(data, data.firstgame);
+
     }
   });
 
@@ -69,5 +74,5 @@ export default (data) => {
     showScreen(data.firstgame.direction.prev(data));
   });
 
-return screenFirstGame;
-}
+  return screenFirstGame;
+};

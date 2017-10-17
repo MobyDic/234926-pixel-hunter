@@ -1,5 +1,7 @@
 import createElement from '../createElement';
 import showScreen from '../showScreen';
+import calcPoints from '../util/calcPoints';
+import state from '../data/initialState';
 
 export default (data) => {
   const gameStatsHtml = `<header class="header">
@@ -54,7 +56,7 @@ export default (data) => {
           <td class="result__total">-100</td>
         </tr>
         <tr>
-          <td colspan="5" class="result__total  result__total--final">950</td>
+          <td colspan="5" class="result__total  result__total--final">${calcPoints(state.answers, state.lives)}</td>
         </tr>
       </table>
       <table class="result__table">
@@ -106,7 +108,7 @@ export default (data) => {
           <td class="result__total">100</td>
         </tr>
         <tr>
-          <td colspan="5" class="result__total  result__total--final">950</td>
+          <td colspan="5" class="result__total  result__total--final">${calcPoints(state.answers, state.lives)}</td>
         </tr>
       </table>
     </div>`;
@@ -119,4 +121,4 @@ export default (data) => {
   });
 
   return screenStatsGame;
-}
+};
