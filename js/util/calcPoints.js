@@ -13,7 +13,7 @@ const calcPoints = (answersArray, restlife) => {
     throw new Error(`Оставшиеся жизни не число`);
   }
 
-  if (restlife <= 0) {
+  if (restlife < 0) {
     throw new Error(`Оставшихся жизней должно быть больше 0`);
   }
 

@@ -56,7 +56,7 @@ export default (data) => {
           <td class="result__total">-100</td>
         </tr>
         <tr>
-          <td colspan="5" class="result__total  result__total--final">${calcPoints(state.answers, state.lives)}</td>
+          <td colspan="5" class="result__total  result__total--final">${calcPoints(state.answers, state.lives - state.wrong)}</td>
         </tr>
       </table>
       <table class="result__table">
@@ -108,7 +108,7 @@ export default (data) => {
           <td class="result__total">100</td>
         </tr>
         <tr>
-          <td colspan="5" class="result__total  result__total--final">${calcPoints(state.answers, state.lives)}</td>
+          <td colspan="5" class="result__total  result__total--final">${calcPoints(state.answers, state.lives - state.wrong)}</td>
         </tr>
       </table>
     </div>`;
