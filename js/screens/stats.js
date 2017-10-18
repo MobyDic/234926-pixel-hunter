@@ -119,6 +119,7 @@ export default (data) => {
   showGreeting.addEventListener(`click`, () => {
     showScreen(data.stat.direction.next(data));
   });
-
+  state.answers = [];
+  state.wrong = 0;
   return screenStatsGame;
 };
