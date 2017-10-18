@@ -1,5 +1,6 @@
 import createElement from '../createElement';
 import headerTemplate from './header';
+import statsResult from './statsResult';
 import state from '../data/initialState';
 import question from '../data/question.js';
 import nextScreen from '../util/nextScreen';
@@ -9,7 +10,7 @@ import showScreen from '../showScreen';
 export default (data) => {
   const questions = [question(), question(), question()];
 
-  const gameThirdHtml = `${headerTemplate}
+  const gameThirdHtml = `${headerTemplate(state)}
     <div class="game">
       <p class="game__task">${data.firstgame.description}</p>
       <form class="game__content  game__content--triple">
@@ -23,20 +24,7 @@ export default (data) => {
           <img src="${questions[2].question}" alt="Option 1" width="304" height="455">
         </div>
       </form>
-      <div class="stats">
-        <ul class="stats">
-          <li class="stats__result stats__result--wrong"></li>
-          <li class="stats__result stats__result--slow"></li>
-          <li class="stats__result stats__result--fast"></li>
-          <li class="stats__result stats__result--correct"></li>
-          <li class="stats__result stats__result--wrong"></li>
-          <li class="stats__result stats__result--unknown"></li>
-          <li class="stats__result stats__result--slow"></li>
-          <li class="stats__result stats__result--unknown"></li>
-          <li class="stats__result stats__result--fast"></li>
-          <li class="stats__result stats__result--unknown"></li>
-        </ul>
-      </div>
+      ${statsResult(state)}
     </div>`;
 
   const screenThirdGame = createElement(gameThirdHtml);
