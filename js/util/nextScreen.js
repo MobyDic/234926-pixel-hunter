@@ -10,9 +10,9 @@ export default(data, screen) => {
     return sum;
   }, 0);
 
-  state.lives -= countWrong;
+  state.wrong = (countWrong > state.lives) ? state.lives : countWrong;
 
-  if (state.answers.length < state.game && state.lives > 0) {
+  if (state.answers.length < state.game && state.lives > state.wrong) {
     showScreen(screen.direction.next(data));
   } else {
     showScreen(screen.direction.end(data));
