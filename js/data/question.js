@@ -5,7 +5,7 @@ const questionData = {
     {question: `https://k42.kn3.net/CF42609C8.jpg`,
       type: `paint`
     },
-    {question: `http://i.imgur.com/1KegWPz.jpg`,
+    {question: `https://i.imgur.com/1KegWPz.jpg`,
       type: `photo`},
 
     {question: `https://k42.kn3.net/D2F0370D6.jpg`,
@@ -14,7 +14,7 @@ const questionData = {
     {question: `https://k32.kn3.net/5C7060EC5.jpg`,
       type: `paint`},
 
-    {question: `http://i.imgur.com/DKR1HtB.jpg`,
+    {question: `https://i.imgur.com/DKR1HtB.jpg`,
       type: `photo`},
 
     {question: `https://i.imgur.com/DiHM5Zb.jpg`,

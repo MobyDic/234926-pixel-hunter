@@ -1,6 +1,5 @@
-import state from '../data/initialState';
-
-const headerTemplate = `<header class="header">
+export default(state) => {
+  const headerTemplate = `<header class="header">
     <div class="header__back">
       <button class="back">
         <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -9,13 +8,10 @@ const headerTemplate = `<header class="header">
     </div>
     <h1 class="game__timer">${state.time}</h1>
     <div class="game__lives">
-    ${new Array(state.wrong)
-      .fill(`<img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">`)
-      .join(``)}
-    ${new Array(state.lives - state.wrong)
-      .fill(`<img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">`)
-      .join(``)}
+    ${`<img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">`.repeat(state.wrong)}
+    ${`<img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">`.repeat(state.lives - state.wrong)}
     </div>
   </header>`;
 
-export default headerTemplate;
+  return headerTemplate;
+};
