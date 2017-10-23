@@ -1,10 +1,15 @@
-import createElement from '../createElement';
-import showScreen from '../showScreen';
-import calcPoints from '../util/calcPoints';
-import state from '../data/initialState';
+import AbstractView from '../abstractView';
+import calcPoints from '../../util/calcPoints';
 
-export default (data) => {
-  const gameStatsHtml = `<header class="header">
+class StatsView extends AbstractView {
+  constructor(state) {
+    super();
+    this.state = state;
+  }
+
+  template() {
+    return `
+    <header class="header">
       <div class="header__back">
         <button class="back">
           <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -56,7 +61,7 @@ export default (data) => {
           <td class="result__total">-100</td>
         </tr>
         <tr>
-          <td colspan="5" class="result__total  result__total--final">${calcPoints(state.answers, state.lives - state.wrong)}</td>
+          <td colspan="5" class="result__total  result__total--final">${calcPoints(this.state.answers, this.state.lives - this.state.wrong)}</td>
         </tr>
       </table>
       <table class="result__table">
@@ -108,18 +113,24 @@ export default (data) => {
           <td class="result__total">100</td>
         </tr>
         <tr>
-          <td colspan="5" class="result__total  result__total--final">${calcPoints(state.answers, state.lives - state.wrong)}</td>
+          <td colspan="5" class="result__total  result__total--final">${calcPoints(this.state.answers, this.state.lives - this.state.wrong)}</td>
         </tr>
       </table>
-    </div>`;
+    </div>`.trim();
+  }
 
-  const screenStatsGame = createElement(gameStatsHtml);
-  const showGreeting = screenStatsGame.querySelector(`.back`);
+  bind() {
+    const stat = this.element;
+    const showGreeting = stat.querySelector(`.back`);
 
-  showGreeting.addEventListener(`click`, () => {
-    showScreen(data.stat.direction.next(data));
-  });
-  state.answers = [];
-  state.wrong = 0;
-  return screenStatsGame;
-};
+    showGreeting.addEventListener(`click`, (evt) => {
+      this.clickPrev(evt);
+    });
+
+  }
+
+  clickPrev() {}
+
+}
+
+export default StatsView;

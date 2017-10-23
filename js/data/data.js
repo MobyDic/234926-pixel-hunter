@@ -1,9 +1,9 @@
-import screenGreeting from '../screens/greeting';
-import screenRules from '../screens/rules';
-import screenFirstGame from '../screens/game-1';
-import screenSecondGame from '../screens/game-2';
-import screenThirdGame from '../screens/game-3';
-import screenStats from '../screens/stats';
+import screenGreeting from '../screens/greeting/greeting';
+import screenRules from '../screens/rules/rules';
+import screenFirstGame from '../screens/game-1/game-1';
+import screenSecondGame from '../screens/game-2/game-2';
+import screenThirdGame from '../screens/game-3/game-3';
+import screenStats from '../screens/stats/stats';
 
 
 const screens = {
@@ -62,10 +62,10 @@ const screens = {
       end: screenStats
     }
   },
-  'stat': {
+  'stats': {
     description: `Победа!`,
     direction: {
-      next: screenGreeting
+      prev: screenGreeting
     }
   }
 };
