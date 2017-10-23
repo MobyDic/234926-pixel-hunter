@@ -13,8 +13,8 @@ export default(data, screen) => {
   state.wrong = (countWrong > state.lives) ? state.lives : countWrong;
 
   if (state.answers.length < state.game && state.lives > state.wrong) {
-    showScreen(screen.direction.next(data));
+    showScreen(screen.direction.next(data).element);
   } else {
-    showScreen(screen.direction.end(data));
+    showScreen(screen.direction.end(data).element);
   }
 };
