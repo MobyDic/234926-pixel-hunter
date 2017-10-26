@@ -46,8 +46,6 @@ class FirstGameView extends AbstractView {
     const showRules = firstGame.querySelector(`.back`);
     const showFirstGame = firstGame.querySelector(`.game__content`);
 
-    setTimeout(this.tick(), 1000);
-
     showFirstGame.addEventListener(`click`, (evt) => {
       const radioChecked = firstGame.querySelectorAll(`input[type=radio]:checked`);
       this.clickNext(radioChecked, evt);

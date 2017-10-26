@@ -1,9 +1,9 @@
-import screenGreeting from '../screens/greeting/greeting';
-import screenRules from '../screens/rules/rules';
-import screenFirstGame from '../screens/game-1/game-1';
-import screenSecondGame from '../screens/game-2/game-2';
-import screenThirdGame from '../screens/game-3/game-3';
-import screenStats from '../screens/stats/stats';
+import screenGreeting from '../screens/greeting/greeting-screen';
+import screenRules from '../screens/rules/rules-screen';
+import screenFirstGame from '../screens/game-1/game-1-screen';
+import screenSecondGame from '../screens/game-2/game-2-screen';
+import screenThirdGame from '../screens/game-3/game-3-screen';
+import screenStats from '../screens/stats/stats-screen';
 
 
 const screens = {

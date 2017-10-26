@@ -34,7 +34,7 @@ const calcPoints = (answersArray, restlife) => {
     if (typeof row.time !== `number`) {
       throw new Error(`Время ответа не число`);
     }
-    if (row.time <= 0) {
+    if (row.time < 0) {
       throw new Error(`Время ответа должно быть больше 0`);
     }
 

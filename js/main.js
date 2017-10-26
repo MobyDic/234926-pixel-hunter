@@ -1,6 +1,3 @@
-import showScreen from './showScreen';
-import moduleIntro from './screens/intro/intro';
-import data from './data/data';
+import App from './application';
 
-
-showScreen(moduleIntro(data).element);
+App.showIntro();
