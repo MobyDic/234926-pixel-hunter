@@ -1,13 +1,13 @@
+import state from '../data/initialState';
+
 const correctReplyPoint = 100;
 const quickReplyPoint = 50;
 const slowReplyPoint = -50;
 const plusLife = 50;
-const quickTime = 5;
-const slowTime = 10;
 
 const calcPoints = (answersArray, restlife) => {
   if (!(answersArray instanceof Array)) {
-    throw new Error(`Ответы пользователя должны не в массиве`);
+    throw new Error(`Ответы пользователя находятся не в массиве`);
   }
   if (typeof restlife !== `number`) {
     throw new Error(`Оставшиеся жизни не число`);
@@ -17,7 +17,7 @@ const calcPoints = (answersArray, restlife) => {
     throw new Error(`Оставшихся жизней должно быть больше 0`);
   }
 
-  if (answersArray.length < 10) {
+  if (answersArray.length < state.game) {
     return -1;
   }
 
@@ -41,10 +41,10 @@ const calcPoints = (answersArray, restlife) => {
     if (row.answer) {
       countPoints += correctReplyPoint;
 
-      if (row.time < quickTime) {
+      if (row.time < state.quickTime) {
         countPoints += quickReplyPoint;
       }
-      if (row.time > slowTime) {
+      if (row.time > state.slowTime) {
         countPoints += slowReplyPoint;
       }
     }
