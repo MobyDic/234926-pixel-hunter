@@ -11,9 +11,9 @@ class StatsScreen {
     this.model = new GameModel();
   }
 
-  init() {
+  init(state) {
 
-    this.view = new StatsView(this.model.getState);
+    this.view = new StatsView(state);
 
     showScreen(this.view.element);
 
