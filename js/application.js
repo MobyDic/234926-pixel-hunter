@@ -9,12 +9,12 @@ import ThirdGameScreen from './screens/game-3/game-3-screen';
 import StatsScreen from './screens/stats/stats-screen';
 
 const ControllerId = {
-  INTRO: `intro`,
+  INTRO: ``,
   GREETING: `greeting`,
   RULES: `rules`,
-  FIRST_GAME: `first-game`,
-  SECOND_GAME: `second-game`,
-  THIRD_GAME: `third-game`,
+  FIRST_GAME: `game-1`,
+  SECOND_GAME: `game-2`,
+  THIRD_GAME: `game-3`,
   STATS: `stats`
 };
 
@@ -48,9 +48,8 @@ export default class Application {
     const hashChangeHandler = () => {
       const hashValue = location.hash.replace(`#`, ``);
       const [id, dataRt] = hashValue.split(`?`);
-      if (id === `stats`) {
-        this.changeHash(id, dataRt);
-      }
+
+      this.changeHash(id, dataRt);
 
     };
 
@@ -60,9 +59,20 @@ export default class Application {
 
   static changeHash(id, dataObj) {
     const controller = routes[id];
-    if (controller) {
+    if (controller && id.substr(0, 4) !== `game`) {
       controller.init(loadState(dataObj));
+    } else {
+
+      let maxId = setTimeout(function () {});
+      while (maxId--) {
+        clearTimeout(maxId);
+
+      }
+      state.lastTime = state.time;
+      const ControllerGame = controller;
+      new ControllerGame(data).init();
     }
+
   }
 
   static showIntro() {
