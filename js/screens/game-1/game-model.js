@@ -1,5 +1,7 @@
 import question from '../../data/question';
 import state from '../../data/initialState';
+import {stateArray} from '../../data/stateArray';
+
 
 class GameModel {
 
@@ -21,6 +23,11 @@ class GameModel {
 
   answersPush(correctness) {
     state.answers.push(correctness);
+  }
+
+  statesPush() {
+
+    stateArray.push({'state': state});
   }
 
   updateTime() {
@@ -46,9 +53,10 @@ class GameModel {
     return (state.answers.length < state.game && state.lives > state.wrong);
   }
 
-  initGame() {
+  initGame(userName) {
     state.answers = [];
     state.wrong = 0;
+    state.userName = userName;
   }
 }
 

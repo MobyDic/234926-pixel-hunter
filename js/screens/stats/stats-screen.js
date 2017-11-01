@@ -12,8 +12,7 @@ class StatsScreen {
     this.model = new GameModel();
   }
 
-  init(state) {
-    stateArray[stateArray.length - 1].state = state;
+  init() {
 
     this.view = new StatsView(stateArray);
 

@@ -45,6 +45,7 @@ class FirstGameScreen {
         if (model.validNextScreen()) {
           App.showSecondGame();
         } else {
+          model.statesPush();
           App.showStats();
         }
         this.model.resetTime(this.view.tick);
