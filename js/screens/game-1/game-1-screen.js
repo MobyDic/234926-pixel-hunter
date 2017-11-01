@@ -26,6 +26,7 @@ class FirstGameScreen {
     this.view.clickPrev = (evt) => {
       evt.preventDefault();
       this.model.resetTime(this.view.tick);
+      clearTimeout(this.view.tick);
       App.showRules();
     };
 
@@ -33,9 +34,13 @@ class FirstGameScreen {
       const model = this.model;
 
       if (radioChecked.length > 1) {
+
+        let arrValue = true;
         radioChecked.forEach(function (arr, i) {
-          model.answersPush({'answer': (arr.value === questions[i].type), 'time': model.time - model.lastTime});
+          arrValue = (arr.value === questions[i].type) && arrValue;
         });
+
+        model.answersPush({'answer': arrValue, 'time': model.time - model.lastTime});
 
         if (model.validNextScreen()) {
           App.showSecondGame();

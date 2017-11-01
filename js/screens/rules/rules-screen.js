@@ -1,12 +1,14 @@
 import RulesView from './rules-view';
 import showScreen from '../../showScreen';
 import App from '../../application';
+import RulesModel from './rules-model';
 
 class RulesScreen {
 
   constructor(data) {
     this.data = data;
     this.view = new RulesView(data);
+    this.model = new RulesModel();
   }
 
   init() {
@@ -19,6 +21,7 @@ class RulesScreen {
 
     this.view.clickNext = (evt) => {
       evt.preventDefault();
+      this.model.name = evt.toElement.previousElementSibling.value;
       App.showFirstGame();
     };
 

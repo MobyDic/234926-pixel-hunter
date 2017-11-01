@@ -1,7 +1,6 @@
 
 export default(state) => {
-  let row;
-
+  let row = ``;
   state.answers.forEach(function (arr) {
     if (arr.answer) {
       if (arr.time < state.quickTime) {
@@ -15,6 +14,10 @@ export default(state) => {
       row += `<li class="stats__result stats__result--wrong"></li>`;
     }
   });
+
+  if (state.answers.length < state.game) {
+    row += `<li class="stats__result stats__result--unknown">`.repeat(state.game - state.answers.length);
+  }
 
   return row;
 };
