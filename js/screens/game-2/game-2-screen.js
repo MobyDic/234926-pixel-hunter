@@ -39,6 +39,7 @@ class SecondGameScreen {
         if (model.validNextScreen()) {
           App.showThirdGame();
         } else {
+          model.statesPush();
           App.showStats();
         }
 

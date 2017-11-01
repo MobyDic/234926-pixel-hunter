@@ -6,7 +6,8 @@ const initialState = {
   quickTime: 5,
   slowTime: 10,
   answers: [],
-  wrong: 0
+  wrong: 0,
+  userName: ``
 };
 
 export default initialState;
