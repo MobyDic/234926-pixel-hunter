@@ -23,7 +23,7 @@ class RulesScreen {
     this.view.clickNext = (evt) => {
       evt.preventDefault();
       this.model.initGame(evt.toElement.previousElementSibling.value);
-      App.showFirstGame();
+      App.showGame(this.model.getState.answers.length);
     };
 
     this.view.buttonGameDsbl = (button, evt) => {

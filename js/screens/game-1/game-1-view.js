@@ -15,7 +15,7 @@ class FirstGameView extends AbstractView {
       <p class="game__task">${this.data.firstgame.description}</p>
       <form class="game__content">
         <div class="game__option">
-          <img src="${this.questions[0].question}" alt="Option 1" width="468" height="458">
+          <img src="${this.questions[0].image.url}" alt="Option 1" width="468" height="458">
           <label class="game__answer game__answer--photo">
             <input name="question1" type="radio" value="photo">
             <span>Фото</span>
@@ -26,7 +26,7 @@ class FirstGameView extends AbstractView {
           </label>
         </div>
         <div class="game__option">
-          <img src="${this.questions[1].question}" alt="Option 2" width="468" height="458">
+          <img src="${this.questions[1].image.url}" alt="Option 2" width="468" height="458">
           <label class="game__answer  game__answer--photo">
             <input name="question2" type="radio" value="photo">
             <span>Фото</span>

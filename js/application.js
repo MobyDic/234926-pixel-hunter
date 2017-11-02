@@ -7,6 +7,8 @@ import FirstGameScreen from './screens/game-1/game-1-screen';
 import SecondGameScreen from './screens/game-2/game-2-screen';
 import ThirdGameScreen from './screens/game-3/game-3-screen';
 import StatsScreen from './screens/stats/stats-screen';
+import APIServer from './util/api-server';
+
 
 const ControllerId = {
   INTRO: ``,
@@ -41,6 +43,8 @@ const loadState = (dataString) => {
   }
 };
 
+const loadData = {};
+
 export default class Application {
 
   static init() {
@@ -55,7 +59,16 @@ export default class Application {
 
     window.onhashchange = hashChangeHandler;
     hashChangeHandler();
+
+    this.loadGameData();
   }
+
+  static async loadGameData() {
+    this.loadData = await APIServer.getData();
+    const imagesURL = APIServer.getImagesURL(this.loadData);
+    await Promise.all(imagesURL.map((it) => APIServer.loadImage(it)));
+  }
+
 
   static changeHash(id, dataObj) {
     const controller = routes[id];
@@ -70,7 +83,7 @@ export default class Application {
       }
       state.lastTime = state.time;
       const ControllerGame = controller;
-      new ControllerGame(data).init();
+      new ControllerGame(data).init(this.loadData[state.answers.length]);
     }
 
   }
@@ -90,21 +103,21 @@ export default class Application {
     routes[ControllerId.RULES].init();
   }
 
-  static showFirstGame() {
+  static showFirstGame(loadData) {
     const firstGame = new routes[ControllerId.FIRST_GAME](data);
-    firstGame.init();
+    firstGame.init(loadData);
     location.hash = ControllerId[`FIRST_GAME`];
   }
 
-  static showSecondGame() {
+  static showSecondGame(loadData) {
     const secondGame = new routes[ControllerId.SECOND_GAME](data);
-    secondGame.init();
+    secondGame.init(loadData);
     location.hash = ControllerId[`SECOND_GAME`];
   }
 
-  static showThirdGame() {
+  static showThirdGame(loadData) {
     const thirdGame = new routes[ControllerId.THIRD_GAME](data);
-    thirdGame.init();
+    thirdGame.init(loadData);
     location.hash = ControllerId[`THIRD_GAME`];
   }
 
@@ -113,6 +126,22 @@ export default class Application {
     routes[ControllerId.STATS].init(loadState(state));
   }
 
+  static showGame() {
+
+    const index = state.answers.length;
+
+    switch (this.loadData[index].type) {
+      case `two-of-two`:
+        this.showFirstGame(this.loadData[index]);
+        break;
+      case `tinder-like`:
+        this.showSecondGame(this.loadData[index]);
+        break;
+      case `one-of-three`:
+        this.showThirdGame(this.loadData[index]);
+        break;
+    }
+  }
 }
 
 Application.init();

@@ -15,8 +15,8 @@ class SecondGameScreen {
     this.model = new GameModel();
   }
 
-  init() {
-    const questions = this.model.getQuestion;
+  init(loadData) {
+    const questions = loadData.answers;
 
     this.view = new SecondGameView(this.data, questions, headerTemplate(this.model.getState), statsResult(this.model.getState));
 
@@ -25,19 +25,19 @@ class SecondGameScreen {
     this.view.clickPrev = (evt) => {
       evt.preventDefault();
       this.model.resetTime(this.view.tick);
-      App.showFirstGame();
+      App.showRules();
     };
 
     this.view.clickNext = (radioChecked) => {
       const model = this.model;
 
       if (radioChecked.length > 0) {
-        radioChecked.forEach(function (arr) {
-          model.answersPush({'answer': (arr.value === questions.type), 'time': model.time - model.lastTime});
+        radioChecked.forEach(function (arr, i) {
+          model.answersPush({'answer': (arr.value === questions[i].type.substr(0, 5)), 'time': model.time - model.lastTime});
         });
 
         if (model.validNextScreen()) {
-          App.showThirdGame();
+          App.showGame();
         } else {
           model.statesPush();
           App.showStats();
