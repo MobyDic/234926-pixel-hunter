@@ -16,13 +16,13 @@ class ThirdGameView extends AbstractView {
       <p class="game__task">${this.data.thirdgame.description}</p>
       <form class="game__content  game__content--triple">
         <div class="game__option">
-          <img src="${this.questions[0].question}" alt="Option 1" width="304" height="455">
+          <img src="${this.questions[0].image.url}" alt="Option 1" width="304" height="455">
         </div>
         <div class="game__option  game__option--selected">
-          <img src="${this.questions[1].question}" alt="Option 1" width="304" height="455">
+          <img src="${this.questions[1].image.url}" alt="Option 1" width="304" height="455">
         </div>
         <div class="game__option">
-          <img src="${this.questions[2].question}" alt="Option 1" width="304" height="455">
+          <img src="${this.questions[2].image.url}" alt="Option 1" width="304" height="455">
         </div>
       </form>
       ${this.statsResult}

@@ -15,8 +15,8 @@ class ThirdGameScreen {
     this.model = new GameModel();
   }
 
-  init() {
-    const questions = [this.model.getQuestion, this.model.getQuestion, this.model.getQuestion];
+  init(loadData) {
+    const questions = loadData.answers;
 
     this.view = new ThirdGameView(this.data, questions, headerTemplate(this.model.getState), statsResult(this.model.getState));
 
@@ -25,21 +25,22 @@ class ThirdGameScreen {
     this.view.clickPrev = (evt) => {
       evt.preventDefault();
       this.model.resetTime(this.view.tick);
-      App.showFirstGame();
+      App.showRules();
     };
 
     this.view.clickNext = (evt) => {
       const model = this.model;
 
       const questionClick = questions.find(function (arr) {
-        return (arr.question === evt.srcElement.childNodes[1].currentSrc);
+
+        return (arr.image.url === evt.srcElement.childNodes[1].currentSrc);
 
       });
 
-      model.answersPush({'answer': (questionClick.type === `paint`), 'time': model.time - model.lastTime});
+      model.answersPush({'answer': (questionClick.type === `painting`), 'time': model.time - model.lastTime});
 
       if (model.validNextScreen()) {
-        App.showFirstGame();
+        App.showGame();
       } else {
         model.statesPush();
         App.showStats();

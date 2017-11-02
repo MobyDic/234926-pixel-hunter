@@ -2,8 +2,10 @@ import question from '../../data/question';
 import state from '../../data/initialState';
 import {stateArray} from '../../data/stateArray';
 
-
 class GameModel {
+  constructor() {
+    this.currentState = Object.assign({}, state);
+  }
 
   get getQuestion() {
     return question();
@@ -27,7 +29,7 @@ class GameModel {
 
   statesPush() {
 
-    stateArray.push({'state': state});
+    stateArray.push({'state': this.currentState});
   }
 
   updateTime() {
@@ -57,6 +59,7 @@ class GameModel {
     state.answers = [];
     state.wrong = 0;
     state.userName = userName;
+    this.currentState = Object.assign({}, state);
   }
 }
 
