@@ -3,7 +3,7 @@ import showScreen from '../../showScreen';
 import App from '../../application';
 import GameModel from '../game-1/game-model.js';
 import {stateArray} from '../../data/stateArray';
-
+import APIServer from '../../util/api-server';
 
 class StatsScreen {
 
@@ -13,6 +13,8 @@ class StatsScreen {
   }
 
   init() {
+    const stateArray = APIServer.loadStatistics(this.model.userName);
+    console.log(stateArray);
 
     this.view = new StatsView(stateArray);
 

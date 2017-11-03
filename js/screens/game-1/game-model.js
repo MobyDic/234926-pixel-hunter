@@ -15,6 +15,10 @@ class GameModel {
     return state.time;
   }
 
+  get userName() {
+    return state.userName;
+  }
+
   get getState() {
     return state;
   }

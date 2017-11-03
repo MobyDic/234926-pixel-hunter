@@ -35,6 +35,30 @@ class APIServer {
     });
   }
 
+  static sendStatistics(data, username) {
+    return fetch(`${Url.STATISTICS}${username}`, {
+      method: `POST`,
+      headers: {
+        'Content-Type': `application/json`
+      },
+      body: JSON.stringify(data)
+    });
+  }
+
+  static async loadStatistics(username) {
+    // return fetch(`${Url.STATISTICS}${username}`)
+    //     .then((response) => {
+    //       if (response.ok) {
+    //         return response.json();
+    //       } else {
+    //         throw new Error(`Ошибка! ${response.status}`);
+    //       }
+    //     });
+    const response = await fetch(`${Url.STATISTICS}${username}`);
+    const responseData = await response.json();
+    return(responseData);
+  }
+
 }
 
 export default APIServer;

@@ -1,5 +1,5 @@
 const initialState = {
-  game: 10,
+  game: 1,
   lives: 3,
   time: 30,
   lastTime: 30,

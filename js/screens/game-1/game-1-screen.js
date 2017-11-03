@@ -5,6 +5,7 @@ import App from '../../application';
 import GameModel from './game-model.js';
 import statsResult from '../statsResult';
 import headerTemplate from '../header';
+import APIServer from '../../util/api-server';
 
 
 class FirstGameScreen {
@@ -48,7 +49,8 @@ class FirstGameScreen {
           App.showGame();
         } else {
           model.statesPush();
-          App.showStats(this.model.getState.answers.length);
+          APIServer.sendStatistics(model.getState, model.userName);
+          App.showStats();
         }
         this.model.resetTime(this.view.tick);
       }
