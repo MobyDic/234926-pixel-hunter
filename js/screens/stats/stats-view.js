@@ -6,7 +6,6 @@ class StatsView extends AbstractView {
   constructor(stateArray) {
     super();
     this.stateArray = stateArray;
-    console.log(this.stateArray);
   }
 
   getWinTemplate(state, numList) {
@@ -119,8 +118,8 @@ class StatsView extends AbstractView {
     this.stateArray.forEach((arr, i) => {
       result += `
       <div class="result">
-        ${this.getWinTemplate(this.stateArray[i].state, i)}
-        ${this.getAddInfo(this.stateArray[i].state)}
+        ${this.getWinTemplate(this.stateArray[i], i)}
+        ${this.getAddInfo(this.stateArray[i])}
         </table>
       </div>`.trim();
     });

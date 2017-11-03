@@ -2,7 +2,7 @@ import StatsView from './stats-view';
 import showScreen from '../../showScreen';
 import App from '../../application';
 import GameModel from '../game-1/game-model.js';
-import {stateArray} from '../../data/stateArray';
+// import {stateArray} from '../../data/stateArray';
 import APIServer from '../../util/api-server';
 
 class StatsScreen {
@@ -15,18 +15,18 @@ class StatsScreen {
   init() {
 
     APIServer.loadStatistics(this.model.userName)
-    .then((stateArray) => {
+        .then((stateArray) => {
 
-      this.view = new StatsView(stateArray);
+          this.view = new StatsView(stateArray);
 
-      showScreen(this.view.element);
+          showScreen(this.view.element);
 
-      this.view.clickPrev = (evt) => {
-        evt.preventDefault();
-        App.showGreeting();
-      };
+          this.view.clickPrev = (evt) => {
+            evt.preventDefault();
+            App.showGreeting();
+          };
 
-    });
+        });
   }
 }
 
