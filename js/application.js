@@ -43,8 +43,6 @@ const loadState = (dataString) => {
   }
 };
 
-const loadData = {};
-
 export default class Application {
 
   static init() {
@@ -57,7 +55,7 @@ export default class Application {
 
     };
 
-    window.onhashchange = hashChangeHandler;
+    window.addEventListener(`hashchange`, hashChangeHandler);
     hashChangeHandler();
 
     this.loadGameData();
