@@ -6,6 +6,7 @@ class StatsView extends AbstractView {
   constructor(stateArray) {
     super();
     this.stateArray = stateArray;
+    console.log(this.stateArray);
   }
 
   getWinTemplate(state, numList) {

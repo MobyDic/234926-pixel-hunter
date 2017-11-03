@@ -13,18 +13,20 @@ class StatsScreen {
   }
 
   init() {
-    const stateArray = APIServer.loadStatistics(this.model.userName);
-    console.log(stateArray);
 
-    this.view = new StatsView(stateArray);
+    APIServer.loadStatistics(this.model.userName)
+    .then((stateArray) => {
 
-    showScreen(this.view.element);
+      this.view = new StatsView(stateArray);
 
-    this.view.clickPrev = (evt) => {
-      evt.preventDefault();
-      App.showGreeting();
-    };
+      showScreen(this.view.element);
 
+      this.view.clickPrev = (evt) => {
+        evt.preventDefault();
+        App.showGreeting();
+      };
+
+    });
   }
 }
 

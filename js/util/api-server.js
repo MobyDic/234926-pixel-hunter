@@ -49,14 +49,18 @@ class APIServer {
     // return fetch(`${Url.STATISTICS}${username}`)
     //     .then((response) => {
     //       if (response.ok) {
+    //         console.log(response.json());
     //         return response.json();
     //       } else {
     //         throw new Error(`Ошибка! ${response.status}`);
     //       }
     //     });
+
     const response = await fetch(`${Url.STATISTICS}${username}`);
     const responseData = await response.json();
-    return(responseData);
+    return responseData;
+
+
   }
 
 }
