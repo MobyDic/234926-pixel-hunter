@@ -13,6 +13,7 @@ const rename = require('gulp-rename');
 const imagemin = require('gulp-imagemin');
 const rollup = require('gulp-better-rollup');
 const sourcemaps = require('gulp-sourcemaps');
+const uglify = require('gulp-uglify');
 const mocha = require('gulp-mocha');
 const babel = require('rollup-plugin-babel');
 const resolve = require('rollup-plugin-node-resolve');
