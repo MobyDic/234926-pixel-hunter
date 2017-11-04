@@ -62,6 +62,15 @@ gulp.task('scripts', function () {
           ],
           plugins: [
             'external-helpers',
+            [
+              'transform-runtime',
+              {
+                helpers: false,
+                polyfill: false,
+                regenerator: true,
+                moduleName: "babel-runtime"
+              }
+            ]
           ]
         })
       ]
@@ -145,4 +154,4 @@ gulp.task('assemble', ['clean'], function () {
   gulp.start('copy', 'style');
 });
 
-gulp.task('build', ['assemble', 'imagemin']);
+gulp.task('build', ['assemble'], () => { gulp.start('imagemin') });

@@ -55,12 +55,13 @@ class APIServer {
     //         throw new Error(`Ошибка! ${response.status}`);
     //       }
     //     });
-
-    const response = await fetch(`${Url.STATISTICS}${username}`);
-    const responseData = await response.json();
-    return responseData;
-
-
+    try {
+      const response = await fetch(`${Url.STATISTICS}${username}`);
+      const responseData = await response.json();
+      return responseData;
+    } catch (exc) {
+      return [];
+    }
   }
 
 }
