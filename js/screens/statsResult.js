@@ -3,6 +3,7 @@ export default (state) => {
   let answerStats = ``;
 
   state.answers.forEach(function (arr) {
+
     if (arr.answer) {
       switch (arr.time) {
         case (arr.time < state.quickTime):
