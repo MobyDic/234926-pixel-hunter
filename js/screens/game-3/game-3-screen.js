@@ -39,7 +39,7 @@ class ThirdGameScreen {
 
       const questionClick = questions.find(function (arr) {
 
-        return (arr.image.url === evt.srcElement.childNodes[1].currentSrc);
+        return (arr.image.url === evt.target.src);
 
       });
 
