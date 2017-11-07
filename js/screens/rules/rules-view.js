@@ -32,24 +32,24 @@ class RulesView extends AbstractView {
     const showFirstGame = rules.querySelector(`.rules__button`);
 
     showFirstGame.addEventListener(`click`, (evt) => {
-      this.clickNext(nameUser.value, evt);
+      this.goToNextScreen(nameUser.value, evt);
     });
 
     showGreeting.addEventListener(`click`, (evt) => {
-      this.clickPrev(evt);
+      this.goToPrevScreen(evt);
     });
 
     nameUser.addEventListener(`keyup`, (evt) => {
-      this.buttonGameDsbl(showFirstGame, evt);
+      this.makeButtonEnabled(showFirstGame, evt);
     });
 
   }
 
-  clickNext() {}
+  goToNextScreen() {}
 
-  clickPrev() {}
+  goToPrevScreen() {}
 
-  buttonGameDsbl() {}
+  makeButtonEnabled() {}
 }
 
 export default RulesView;

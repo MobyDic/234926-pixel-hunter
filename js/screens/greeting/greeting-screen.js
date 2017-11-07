@@ -12,7 +12,7 @@ class GreetingScreen {
   init() {
     showScreen(this.view.element);
 
-    this.view.clickNext = (evt) => {
+    this.view.goToNextScreen = (evt) => {
       evt.preventDefault();
       App.showRules();
     };

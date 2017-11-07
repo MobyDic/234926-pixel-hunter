@@ -15,20 +15,20 @@ class RulesScreen {
   init() {
     showScreen(this.view.element);
 
-    this.view.clickPrev = (evt) => {
+    this.view.goToPrevScreen = (evt) => {
       evt.preventDefault();
       App.showGreeting();
     };
 
-    this.view.clickNext = (nameUser, evt) => {
+    this.view.goToNextScreen = (nameUser, evt) => {
       evt.preventDefault();
 
       this.model.initGame(nameUser);
       App.showGame(this.model.getState.answers.length);
     };
 
-    this.view.buttonGameDsbl = (button, evt) => {
-      button.disabled = (evt.target.value) ? false : true;
+    this.view.makeButtonEnabled = (button, evt) => {
+      button.disabled = (!evt.target.value);
     };
 
   }

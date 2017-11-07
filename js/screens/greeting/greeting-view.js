@@ -26,11 +26,11 @@ class GreetingView extends AbstractView {
     const showRules = greeting.querySelector(`.greeting__continue`);
 
     showRules.addEventListener(`click`, (evt) => {
-      this.clickNext(evt);
+      this.goToNextScreen(evt);
     });
   }
 
-  clickNext() {
+  goToNextScreen() {
 
   }
 }
