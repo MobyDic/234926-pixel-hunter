@@ -5,7 +5,6 @@ import App from '../../application';
 import GameModel from '../game-1/game-model.js';
 import statsResult from '../statsResult';
 import headerTemplate from '../header';
-import APIServer from '../../util/api-server';
 
 
 class ThirdGameScreen {
@@ -51,8 +50,7 @@ class ThirdGameScreen {
         App.showGame();
       } else {
         model.statesPush();
-        APIServer.sendStatistics(model.getState, model.userName);
-        App.showStats();
+        App.showStats(this.model.getState, this.model.userName);
       }
       this.model.resetTime(this.view.tick);
 
@@ -68,8 +66,7 @@ class ThirdGameScreen {
           App.showGame();
         } else {
           this.model.statesPush();
-          APIServer.sendStatistics(this.model.getState, this.model.userName);
-          App.showStats();
+          App.showStats(this.model.getState, this.model.userName);
         }
         this.model.resetTime(this.view.tick);
       } else {

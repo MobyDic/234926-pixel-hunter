@@ -5,7 +5,6 @@ import App from '../../application';
 import GameModel from './game-model.js';
 import statsResult from '../statsResult';
 import headerTemplate from '../header';
-import APIServer from '../../util/api-server';
 
 
 class FirstGameScreen {
@@ -35,31 +34,19 @@ class FirstGameScreen {
     };
 
     this.view.clickNext = (radioChecked) => {
-      const model = this.model;
-
       if (radioChecked.length > 1) {
-
         let arrValue = true;
         radioChecked.forEach(function (arr, i) {
-
           arrValue = (arr.value === questions[i].type.substr(0, 5)) && arrValue;
-
         });
 
-        // if (selectScreen(model, arrValue)) {
-        //   App.showGame();
-        // } else {
-        //   APIServer.sendStatistics(model.getState, model.userName);
-        //   App.showStats();
-        // }
-        model.answersPush({'answer': arrValue, 'time': model.time - model.lastTime});
+        this.model.answersPush({'answer': arrValue, 'time': this.model.time - this.model.lastTime});
 
-        if (model.validNextScreen()) {
+        if (this.model.validNextScreen()) {
           App.showGame();
         } else {
-          model.statesPush();
-          APIServer.sendStatistics(model.getState, model.userName);
-          App.showStats();
+          this.model.statesPush();
+          App.showStats(this.model.getState, this.model.userName);
         }
         this.model.resetTime(this.view.tick);
       }
@@ -76,9 +63,7 @@ class FirstGameScreen {
           App.showGame();
         } else {
           this.model.statesPush();
-          APIServer.sendStatistics(this.model.getState, this.model.userName);
-
-          App.showStats();
+          App.showStats(this.model.getState, this.model.userName);
         }
         this.model.resetTime(this.view.tick);
 

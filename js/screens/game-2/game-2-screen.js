@@ -5,7 +5,6 @@ import App from '../../application';
 import GameModel from '../game-1/game-model.js';
 import statsResult from '../statsResult';
 import headerTemplate from '../header';
-import APIServer from '../../util/api-server';
 
 
 class SecondGameScreen {
@@ -27,7 +26,7 @@ class SecondGameScreen {
       evt.preventDefault();
 
       // eslint-disable-next-line
-      if(confirm("Результаты игры будут потеряны. Продолжить выход?")) {
+      if (confirm("Результаты игры будут потеряны. Продолжить выход?")) {
         this.model.resetTime(this.view.tick);
         App.showRules();
       }
@@ -39,15 +38,17 @@ class SecondGameScreen {
 
       if (radioChecked.length > 0) {
         radioChecked.forEach(function (arr, i) {
-          model.answersPush({'answer': (arr.value === questions[i].type.substr(0, 5)), 'time': model.time - model.lastTime});
+          model.answersPush({
+            'answer': (arr.value === questions[i].type.substr(0, 5)),
+            'time': model.time - model.lastTime
+          });
         });
 
         if (model.validNextScreen()) {
           App.showGame();
         } else {
           model.statesPush();
-          APIServer.sendStatistics(model.getState, model.userName);
-          App.showStats();
+          App.showStats(this.model.getState, this.model.userName);
         }
 
         this.model.resetTime(this.view.tick);
@@ -57,16 +58,13 @@ class SecondGameScreen {
     this.view.tick = setInterval(() => {
 
       if (this.model.lastTime === 0) {
-        // this.model.resetTime(this.view.tick);
-        // App.showStats();
         this.model.answersPush({'answer': false, 'time': this.model.time - this.model.lastTime});
 
         if (this.model.validNextScreen()) {
           App.showGame();
         } else {
           this.model.statesPush();
-          APIServer.sendStatistics(this.model.getState, this.model.userName);
-          App.showStats();
+          App.showStats(this.model.getState, this.model.userName);
         }
         this.model.resetTime(this.view.tick);
 

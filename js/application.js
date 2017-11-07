@@ -35,11 +35,10 @@ const saveState = (stateObj) => {
 };
 
 const loadState = (dataString) => {
-
   try {
     return JSON.parse(dataString);
   } catch (e) {
-    return state;
+    return Object.assign({}, state, {answers: []});
   }
 };
 
@@ -52,11 +51,12 @@ export default class Application {
       const [id, dataRt] = hashValue.split(`?`);
 
       this.changeHash(id, dataRt);
-
     };
 
     window.addEventListener(`hashchange`, hashChangeHandler);
-    hashChangeHandler();
+    if (location.hash === ``) {
+      hashChangeHandler();
+    }
 
     this.loadGameData();
   }
@@ -74,10 +74,10 @@ export default class Application {
       controller.init(loadState(dataObj));
     } else {
 
-      let maxId = setTimeout(function () {});
+      let maxId = setTimeout(function () {
+      });
       while (maxId--) {
         clearTimeout(maxId);
-
       }
       state.lastTime = state.time;
       const ControllerGame = controller;
@@ -119,7 +119,8 @@ export default class Application {
     location.hash = ControllerId[`THIRD_GAME`];
   }
 
-  static showStats() {
+  static async showStats(statistics, userName) {
+    await APIServer.sendStatistics(statistics, userName);
     location.hash = `${ControllerId[`STATS`]}?${saveState(state)}`;
     routes[ControllerId.STATS].init(loadState(state));
   }

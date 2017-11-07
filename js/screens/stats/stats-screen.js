@@ -2,7 +2,6 @@ import StatsView from './stats-view';
 import showScreen from '../../showScreen';
 import App from '../../application';
 import GameModel from '../game-1/game-model.js';
-// import {stateArray} from '../../data/stateArray';
 import APIServer from '../../util/api-server';
 
 class StatsScreen {
