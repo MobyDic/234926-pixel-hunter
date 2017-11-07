@@ -16,16 +16,16 @@ describe(`Функция подсчета очков.`, () => {
 
   it(`Количество ответов 10, своевременно, остались все жизни`, () => {
     assert.equal(calcPoints([
-      {answer: true, time: 5},
-      {answer: true, time: 6},
-      {answer: true, time: 7},
-      {answer: true, time: 8},
-      {answer: true, time: 9},
-      {answer: true, time: 10},
-      {answer: true, time: 9},
-      {answer: true, time: 8},
-      {answer: true, time: 7},
-      {answer: true, time: 6}], 3), 1150);
+      {answer: true, time: 15},
+      {answer: true, time: 16},
+      {answer: true, time: 17},
+      {answer: true, time: 18},
+      {answer: true, time: 19},
+      {answer: true, time: 11},
+      {answer: true, time: 19},
+      {answer: true, time: 18},
+      {answer: true, time: 17},
+      {answer: true, time: 16}], 3), 1150);
   });
 
 
@@ -45,16 +45,16 @@ describe(`Функция подсчета очков.`, () => {
 
   it(`Количество ответов 10, медленно, остались все жизни`, () => {
     assert.equal(calcPoints([
-      {answer: true, time: 11},
-      {answer: true, time: 20},
+      {answer: true, time: 21},
+      {answer: true, time: 26},
       {answer: true, time: 30},
-      {answer: true, time: 40},
+      {answer: true, time: 24},
       {answer: true, time: 30},
-      {answer: true, time: 20},
-      {answer: true, time: 11},
-      {answer: true, time: 20},
-      {answer: true, time: 30},
-      {answer: true, time: 40}], 3), 650);
+      {answer: true, time: 27},
+      {answer: true, time: 22},
+      {answer: true, time: 23},
+      {answer: true, time: 24},
+      {answer: true, time: 25}], 3), 650);
   });
 
   // тесты на корректность данных

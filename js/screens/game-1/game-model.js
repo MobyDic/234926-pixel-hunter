@@ -15,6 +15,10 @@ class GameModel {
     return state.time;
   }
 
+  get warningTime() {
+    return state.WARNING_TIME;
+  }
+
   get userName() {
     return state.userName;
   }
@@ -54,9 +58,8 @@ class GameModel {
       return sum;
     }, 0);
 
-    state.wrong = (countWrong > state.lives) ? state.lives : countWrong;
-
-    return (state.answers.length < state.game && state.lives > state.wrong);
+    state.wrong = countWrong;
+    return (state.answers.length < state.game && state.lives >= state.wrong);
   }
 
   initGame(userName) {
@@ -65,6 +68,7 @@ class GameModel {
     state.userName = userName;
     this.currentState = Object.assign({}, state);
   }
+
 }
 
 export default GameModel;

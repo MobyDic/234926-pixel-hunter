@@ -3,8 +3,9 @@ const initialState = {
   lives: 3,
   time: 30,
   lastTime: 30,
-  quickTime: 5,
-  slowTime: 10,
+  quickTime: 10,
+  slowTime: 20,
+  WARNING_TIME: 5,
   answers: [],
   wrong: 0,
   userName: ``

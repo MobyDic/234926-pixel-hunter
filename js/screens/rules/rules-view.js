@@ -32,7 +32,7 @@ class RulesView extends AbstractView {
     const showFirstGame = rules.querySelector(`.rules__button`);
 
     showFirstGame.addEventListener(`click`, (evt) => {
-      this.clickNext(evt);
+      this.clickNext(nameUser.value, evt);
     });
 
     showGreeting.addEventListener(`click`, (evt) => {

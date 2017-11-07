@@ -25,8 +25,13 @@ class SecondGameScreen {
 
     this.view.clickPrev = (evt) => {
       evt.preventDefault();
-      this.model.resetTime(this.view.tick);
-      App.showRules();
+
+      // eslint-disable-next-line
+      if(confirm("Результаты игры будут потеряны. Продолжить выход?")) {
+        this.model.resetTime(this.view.tick);
+        App.showRules();
+      }
+
     };
 
     this.view.clickNext = (radioChecked) => {
@@ -52,9 +57,24 @@ class SecondGameScreen {
     this.view.tick = setInterval(() => {
 
       if (this.model.lastTime === 0) {
+        // this.model.resetTime(this.view.tick);
+        // App.showStats();
+        this.model.answersPush({'answer': false, 'time': this.model.time - this.model.lastTime});
+
+        if (this.model.validNextScreen()) {
+          App.showGame();
+        } else {
+          this.model.statesPush();
+          APIServer.sendStatistics(this.model.getState, this.model.userName);
+          App.showStats();
+        }
         this.model.resetTime(this.view.tick);
-        App.showStats();
+
       } else {
+
+        if (this.model.lastTime <= this.model.warningTime) {
+          this.view.gameTimer().classList.add(`game__timer--flash`);
+        }
 
         this.view.gameTimer().innerHTML = timer(this.model.lastTime).tick().time;
         this.model.updateTime();

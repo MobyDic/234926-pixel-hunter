@@ -13,7 +13,7 @@ class ThirdGameView extends AbstractView {
     return `
     ${this.headerTemplate}
     <div class="game">
-      <p class="game__task">${this.data.thirdgame.description}</p>
+      <p class="game__task">${this.data}</p>
       <form class="game__content  game__content--triple">
         <div class="game__option">
           <img src="${this.questions[0].image.url}" alt="Option 1" width="304" height="455">
@@ -37,7 +37,7 @@ class ThirdGameView extends AbstractView {
 
     showThirdGame.addEventListener(`click`, (evt) => {
 
-      this.clickNext(evt);
+      this.clickNext(this.data, evt);
     });
 
     showSecondGame.addEventListener(`click`, (evt) => {

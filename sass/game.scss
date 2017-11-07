@@ -15,6 +15,16 @@
   top: 25px;
   left: 50%;
   transform: translateX(-50%);
+
+  &--flash {
+    animation: blink 1s linear infinite;
+    @keyframes blink {
+      50% { color: rgb(255, 0, 0); }
+      51% { color: rgba(255, 0, 0, 0); }
+      100% { color: rgba(255, 0, 0, 0); }
+    }
+
+  }
 }
 
 .game__lives {

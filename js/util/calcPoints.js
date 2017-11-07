@@ -6,6 +6,7 @@ const slowReplyPoint = -50;
 const plusLife = 50;
 
 const calcPoints = (answersArray, restlife) => {
+
   if (!(answersArray instanceof Array)) {
     throw new Error(`Ответы пользователя находятся не в массиве`);
   }
@@ -13,11 +14,11 @@ const calcPoints = (answersArray, restlife) => {
     throw new Error(`Оставшиеся жизни не число`);
   }
 
-  if (restlife < 0) {
+  if (restlife < -1) {
     throw new Error(`Оставшихся жизней должно быть больше 0`);
   }
 
-  if (answersArray.length < state.game) {
+  if (answersArray.length < state.game || restlife < 0) {
     return -1;
   }
 

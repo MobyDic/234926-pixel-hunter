@@ -20,9 +20,10 @@ class RulesScreen {
       App.showGreeting();
     };
 
-    this.view.clickNext = (evt) => {
+    this.view.clickNext = (nameUser, evt) => {
       evt.preventDefault();
-      this.model.initGame(evt.toElement.previousElementSibling.value);
+
+      this.model.initGame(nameUser);
       App.showGame(this.model.getState.answers.length);
     };
 
