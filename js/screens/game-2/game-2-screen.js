@@ -22,7 +22,7 @@ class SecondGameScreen {
 
     showScreen(this.view.element);
 
-    this.view.clickPrev = (evt) => {
+    this.view.goToPrevScreen = (evt) => {
       evt.preventDefault();
 
       // eslint-disable-next-line
@@ -33,7 +33,7 @@ class SecondGameScreen {
 
     };
 
-    this.view.clickNext = (radioChecked) => {
+    this.view.goToNextScreen = (radioChecked) => {
       const model = this.model;
 
       if (radioChecked.length > 0) {

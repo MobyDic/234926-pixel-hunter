@@ -37,18 +37,18 @@ class ThirdGameView extends AbstractView {
 
     showThirdGame.addEventListener(`click`, (evt) => {
 
-      this.clickNext(this.data, evt);
+      this.goToNextScreen(this.data, evt);
     });
 
     showSecondGame.addEventListener(`click`, (evt) => {
-      this.clickPrev(evt);
+      this.goToPrevScreen(evt);
     });
 
   }
 
-  clickNext() {}
+  goToNextScreen() {}
 
-  clickPrev() {}
+  goToPrevScreen() {}
 
   tick() {}
 

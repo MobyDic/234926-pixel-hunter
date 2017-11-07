@@ -22,7 +22,7 @@ class ThirdGameScreen {
 
     showScreen(this.view.element);
 
-    this.view.clickPrev = (evt) => {
+    this.view.goToPrevScreen = (evt) => {
       evt.preventDefault();
 
       // eslint-disable-next-line
@@ -33,7 +33,7 @@ class ThirdGameScreen {
 
     };
 
-    this.view.clickNext = (loadQuestion, evt) => {
+    this.view.goToNextScreen = (loadQuestion, evt) => {
       const model = this.model;
 
       const questionClick = questions.find(function (arr) {

@@ -23,7 +23,7 @@ class FirstGameScreen {
 
     showScreen(this.view.element);
 
-    this.view.clickPrev = (evt) => {
+    this.view.goToPrevScreen = (evt) => {
       evt.preventDefault();
       // eslint-disable-next-line
       if (window.confirm(`Результаты игры будут потеряны. Продолжить выход?`)) {
@@ -33,7 +33,7 @@ class FirstGameScreen {
       }
     };
 
-    this.view.clickNext = (radioChecked) => {
+    this.view.goToNextScreen = (radioChecked) => {
       if (radioChecked.length > 1) {
         let arrValue = true;
         radioChecked.forEach(function (arr, i) {

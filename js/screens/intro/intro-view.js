@@ -22,11 +22,11 @@ class IntroView extends AbstractView {
     const showGreeting = intro.querySelector(`.intro__asterisk`);
 
     showGreeting.addEventListener(`click`, (evt) => {
-      this.clickNext(evt);
+      this.goToNextScreen(evt);
     });
   }
 
-  clickNext() {
+  goToNextScreen() {
 
   }
 }

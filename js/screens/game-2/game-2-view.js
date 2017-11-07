@@ -39,18 +39,18 @@ class SecondGameView extends AbstractView {
 
     showSecondGame.addEventListener(`click`, (evt) => {
       const radioChecked = secondGame.querySelectorAll(`input[type=radio]:checked`);
-      this.clickNext(radioChecked, evt);
+      this.goToNextScreen(radioChecked, evt);
     });
 
     showFirstGame.addEventListener(`click`, (evt) => {
-      this.clickPrev(evt);
+      this.goToPrevScreen(evt);
     });
 
   }
 
-  clickNext() {}
+  goToNextScreen() {}
 
-  clickPrev() {}
+  goToPrevScreen() {}
 
   tick() {}
 

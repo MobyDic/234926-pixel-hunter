@@ -1,9 +1,9 @@
 import state from '../data/initialState';
 
-const correctReplyPoint = 100;
-const quickReplyPoint = 50;
-const slowReplyPoint = -50;
-const plusLife = 50;
+const CORRECT_REPLY_POINT = 100;
+const QUICK_REPLY_POINT = 50;
+const SLOW_REPLY_POINT = -50;
+const PLUS_LIFE = 50;
 
 const calcPoints = (answersArray, restlife) => {
 
@@ -25,7 +25,7 @@ const calcPoints = (answersArray, restlife) => {
   let countPoints = 0;
 
   if (restlife > 0) {
-    countPoints += restlife * plusLife;
+    countPoints += restlife * PLUS_LIFE;
   }
 
   answersArray.forEach((row) => {
@@ -40,13 +40,13 @@ const calcPoints = (answersArray, restlife) => {
     }
 
     if (row.answer) {
-      countPoints += correctReplyPoint;
+      countPoints += CORRECT_REPLY_POINT;
 
       if (row.time < state.quickTime) {
-        countPoints += quickReplyPoint;
+        countPoints += QUICK_REPLY_POINT;
       }
       if (row.time > state.slowTime) {
-        countPoints += slowReplyPoint;
+        countPoints += SLOW_REPLY_POINT;
       }
     }
   });

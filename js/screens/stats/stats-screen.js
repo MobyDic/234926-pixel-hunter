@@ -20,7 +20,7 @@ class StatsScreen {
 
           showScreen(this.view.element);
 
-          this.view.clickPrev = (evt) => {
+          this.view.goToPrevScreen = (evt) => {
             evt.preventDefault();
             App.showGreeting();
           };

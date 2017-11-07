@@ -9,10 +9,12 @@ class StatsView extends AbstractView {
   }
 
   getWinTemplate(state, numList) {
+    const POINT_FOR_CORRECT = 100;
+
     const head = (calcPoints(state.answers, state.lives - state.wrong) > 0) ? `<h1>Победа!</h1>` : `<h1>Поражение!</h1>`;
     const point = state.answers.filter((arr) => {
       return arr.answer;
-    }).length * 100;
+    }).length * POINT_FOR_CORRECT;
 
     const result = (calcPoints(state.answers, state.lives - state.wrong) === -1) ? `fail` : point;
 
@@ -30,6 +32,7 @@ class StatsView extends AbstractView {
   }
 
   getSpeedBonus(state) {
+    const POINT_FOR_SPEED = 50;
     const speedBonus = state.answers.filter((arr) => {
       return arr.answer && arr.time < state.quickTime;
     }).length;
@@ -39,7 +42,7 @@ class StatsView extends AbstractView {
           <td class="result__extra">Бонус за скорость:</td>
           <td class="result__extra">${speedBonus}&nbsp;<span class="stats__result stats__result--fast"></span></td>
           <td class="result__points">×&nbsp;50</td>
-          <td class="result__total">${speedBonus * 50}</td>
+          <td class="result__total">${speedBonus * POINT_FOR_SPEED}</td>
         </tr>`;
     } else {
       return ``;
@@ -47,6 +50,8 @@ class StatsView extends AbstractView {
   }
 
   getLifeBonus(state) {
+    const POINT_FOR_LIVE = 50;
+
     if (state.lives - state.wrong) {
       return `
         <tr>
@@ -54,7 +59,7 @@ class StatsView extends AbstractView {
           <td class="result__extra">Бонус за жизни:</td>
           <td class="result__extra">${state.lives - state.wrong}&nbsp;<span class="stats__result stats__result--alive"></span></td>
           <td class="result__points">×&nbsp;50</td>
-          <td class="result__total">${(state.lives - state.wrong) * 50}</td>
+          <td class="result__total">${(state.lives - state.wrong) * POINT_FOR_LIVE}</td>
         </tr>`;
     } else {
       return ``;
@@ -62,6 +67,7 @@ class StatsView extends AbstractView {
   }
 
   getFineSlowness(state) {
+    const POINT_FOR_SLOWNESS = -50;
 
     const fineSlowness = state.answers.filter((arr) => {
       return arr.answer && arr.time > state.slowTime;
@@ -72,7 +78,7 @@ class StatsView extends AbstractView {
           <td class="result__extra">Штраф за медлительность:</td>
           <td class="result__extra">${fineSlowness}&nbsp;<span class="stats__result stats__result--slow"></span></td>
           <td class="result__points">×&nbsp;50</td>
-          <td class="result__total">${fineSlowness * -50}</td>
+          <td class="result__total">${fineSlowness * POINT_FOR_SLOWNESS}</td>
         </tr>`;
     } else {
       return ``;
@@ -131,12 +137,12 @@ class StatsView extends AbstractView {
     const showGreeting = stat.querySelector(`.back`);
 
     showGreeting.addEventListener(`click`, (evt) => {
-      this.clickPrev(evt);
+      this.goToPrevScreen(evt);
     });
 
   }
 
-  clickPrev() {}
+  goToPrevScreen() {}
 
 }
 
