@@ -62,9 +62,13 @@ export default class Application {
   }
 
   static async loadGameData() {
+    const FADE_TIME = 5000;
     this.loadData = await APIServer.getData();
     const imagesURL = APIServer.getImagesURL(this.loadData);
     await Promise.all(imagesURL.map((it) => APIServer.loadImage(it)));
+    setTimeout(() => {
+      this.showGreeting();
+    }, FADE_TIME);
   }
 
 
