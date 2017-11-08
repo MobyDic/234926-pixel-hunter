@@ -26,7 +26,7 @@ class ThirdGameScreen {
       evt.preventDefault();
 
       // eslint-disable-next-line
-      if (confirm("Результаты игры будут потеряны. Продолжить выход?")) {
+      if (confirm(`Результаты игры будут потеряны. Продолжить выход?`)) {
         this.model.resetTime(this.view.tick);
         App.showRules();
       }
